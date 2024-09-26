@@ -1,6 +1,15 @@
-local builtins = require('telescope.builtin')
+-- telescopr-config.lua
+
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then
+	return
+end
+
+builtin = require('telescope.builtin')
+
 require('telescope').setup({
 	defaults = {
+		-- Default configuration for telescope goes here:
 		vimgrep_arguments = {
 				"rg",
 				"--color=never",
@@ -13,16 +22,11 @@ require('telescope').setup({
 		},
 		mappings = {
           n = {
-            ["<leader>ff"] = builtins.find_files,
-            ["<C-p>"] = builtins.git_files,
-            ["<leader>fb"] = builtins.buffers,
+            ["<leader>ff"] = require('telescope.builtin').find_files,
+            ["<C-p>"] = builtin.git_files,
+            ["<leader>fb"] = builtin.buffers,
           },
-					i = {
-						["<leader>ff"] = builtins.find_files,
-            ["<C-p>"] = builtins.git_files,
-            ["<leader>fb"] = builtins.buffers
-					}
-    }
+			}
 	},
 --	pickers = {
 --		find_files = {
@@ -33,11 +37,7 @@ require('telescope').setup({
 })
 
 
---local builtin = telescope.builtin
 -- Telescope configuration
--- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
--- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
--- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-
-
-
+vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})

@@ -14,12 +14,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+	-- rocks.hererocks = false,
+	-- rocks.enabled = false,
 	{'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
+	{'nvim-tree/nvim-web-devicons', lazy = true },
 	{'neovim/nvim-lspconfig'},
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'folke/tokyonight.nvim'},
-	{"nvim-tree/nvim-web-devicons", lazy = true },
 	{"nvim-treesitter/nvim-treesitter", config = function() require("nvim-treesitter.configs").setup {
 			highlight = {
 				enable = true,
@@ -35,13 +37,13 @@ require('lazy').setup({
 		end,
 	},
 	{"nvim-treesitter/nvim-treesitter-textobjects"},
-	{'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim', }},
+	{'nvim-telescope/telescope.nvim', lazy = true, dependencies = { 'nvim-lua/plenary.nvim', }},
 	{"rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"}},
 	{"mfussenegger/nvim-dap-python"},
 	{"folke/neodev.nvim", opts = {}},
 	{'mortepau/codicons.nvim'},
-	{'nvim-tree/nvim-web-devicons'},
 	{'nvim-tree/nvim-tree.lua', lazy = true, dependencies = {'nvim-tree/nvim-web-devicons'}},
+	{'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}}
 })
 
 
