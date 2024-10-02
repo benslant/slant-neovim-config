@@ -27,7 +27,7 @@ end
 
 
 vim.keymap.set('t', '<esc>', "<C-\\><C-n>", {})
-vim.keymap.set('t', 'A-t', ":lua TermToggle(20)<CR>", {noremap = true, silent = true})
-vim.keymap.set('i', 'A-t', "<Esc>:lua TermToggle(20)<CR>", {noremap = true, silent = true})
-vim.keymap.set('t', 'A-t', "<C-\\><C-n>:lua TermToggle(20)<CR>", {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>t', ":lua TermToggle(20)<CR>", {noremap = true, silent = true})
+vim.keymap.set('i', '<leader>t', "<Esc>:lua TermToggle(20)<CR>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>t', "<C-\\><C-n>:lua TermToggle(20)<CR>", {noremap = true, silent = true})
 
