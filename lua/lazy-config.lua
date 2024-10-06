@@ -55,7 +55,8 @@ require('lazy').setup({
 	},
 	{"nvim-neotest/neotest-python"},
 	{"dgrbrady/nvim-docker", dependencies = {'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}},
-	{"3rd/diagram.nvim", dependencies = {"3rd/image.nvim"}}
+	{"3rd/diagram.nvim", dependencies = {"3rd/image.nvim"}},
+	{"stevanmilic/nvim-lspimport"}
 })
 
 

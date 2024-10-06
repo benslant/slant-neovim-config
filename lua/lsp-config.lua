@@ -14,6 +14,9 @@ local opts = {buffer = bufnr}
 	vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
 	vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
 	vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+	vim.keymap.set('i', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+	vim.keymap.set('i', '<leader><TAB>', '<C-x><C-o>', opts)
+	vim.keymap.set("n", "<leader>a", require("lspimport").import, { noremap = true })
 end
 
 lsp_zero.extend_lspconfig({
@@ -36,7 +39,19 @@ cmp.setup({
 })
 
 require('lspconfig').gopls.setup({})
+require('lspconfig').phpactor.setup({})
 require('lspconfig').pyright.setup({})
+-- Configure `ruff-lsp`.
+-- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
+-- For the default config, along with instructions on how to customize the settings
+require('lspconfig').ruff_lsp.setup {
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    }
+  }
+}
 require('lspconfig').yamlls.setup({
 settings = {
             yaml = {

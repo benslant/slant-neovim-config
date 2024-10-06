@@ -8,6 +8,7 @@ require "lualine-config"
 require "terminal-config"
 require "neo-test-config"
 require "diagram-config"
+require "split-navigation-config"
 -- require "image-config"
 -- require "nvim-docker-config"
 

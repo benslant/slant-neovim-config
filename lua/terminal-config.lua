@@ -5,7 +5,8 @@ local term_win = nil
 
 function TermToggle(height)
 	if term_win and vim.api.nvim_win_is_valid(term_win) then
-		vim.cmd("hide")
+		vim.cmd('bd!')
+		-- vim.cmd("hide")
 	else
 		vim.cmd("botright new")
 		local new_buf = vim.api.nvim_get_current_buf()
@@ -27,7 +28,7 @@ end
 
 
 vim.keymap.set('t', '<esc>', "<C-\\><C-n>", {})
-vim.keymap.set('t', '<leader>t', ":lua TermToggle(20)<CR>", {noremap = true, silent = true})
+vim.keymap.set('t', '<leader>t', "<C-\\><C-n>:lua TermToggle(20)<CR>", {noremap = true, silent = true})
 vim.keymap.set('i', '<leader>t', "<Esc>:lua TermToggle(20)<CR>", {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>t', "<C-\\><C-n>:lua TermToggle(20)<CR>", {noremap = true, silent = true})
 
