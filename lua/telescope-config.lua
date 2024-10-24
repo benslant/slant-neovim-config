@@ -18,26 +18,32 @@ require('telescope').setup({
 				"--line-number",
 				"--column",
 				"--smart-case",
-				"--hidden",
+				"--no-ignore",
+		},
+		pickers = {
+			live_grep = {
+				additional_args = function(opts)
+				end
+			},
 		},
 		mappings = {
           n = {
-            ["<leader>ff"] = require('telescope.builtin').find_files,
-            ["<C-p>"] = builtin.git_files,
-            ["<leader>fb"] = builtin.buffers,
           },
 			}
 	},
---	pickers = {
---		find_files = {
---			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
---			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
---		},
---	},
 })
 
+local function find_all_files()
+  require('telescope.builtin').find_files({
+    find_command = { 'rg', '--files', '--hidden', '--no-ignore', '--glob', '!.git' },
+    prompt_title = "All Files",
+    previewer = false,
+  })
+end
 
 -- Telescope configuration
-vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ff', find_all_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })		
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})

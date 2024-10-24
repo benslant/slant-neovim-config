@@ -17,7 +17,6 @@ require('lazy').setup({
 	-- rocks.hererocks = false,
 	-- rocks.enabled = false,
 	{'vhyrro/luarocks.nvim'},
-	{'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
 	{'nvim-tree/nvim-web-devicons', lazy = true },
 	{'neovim/nvim-lspconfig'},
 	{'hrsh7th/cmp-nvim-lsp'},
@@ -56,7 +55,8 @@ require('lazy').setup({
 	{"nvim-neotest/neotest-python"},
 	{"dgrbrady/nvim-docker", dependencies = {'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}},
 	{"3rd/diagram.nvim", dependencies = {"3rd/image.nvim"}},
-	{"stevanmilic/nvim-lspimport"}
+	{"stevanmilic/nvim-lspimport"},
+	{"leoluz/nvim-dap-go"}
 })
 
 
