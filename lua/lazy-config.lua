@@ -16,6 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 	-- rocks.hererocks = false,
 	-- rocks.enabled = false,
+	{"williamboman/mason.nvim", opts = {
+		ensure_installed = {
+			"pyright",
+		}
+	}
+	},
 	{'vhyrro/luarocks.nvim'},
 	{'nvim-tree/nvim-web-devicons', lazy = true },
 	{'neovim/nvim-lspconfig'},
