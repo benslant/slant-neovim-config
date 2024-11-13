@@ -9,6 +9,8 @@ require "terminal-config"
 require "neo-test-config"
 require "diagram-config"
 require "split-navigation-config"
+require "trouble-config"
+require "markdown-preview-config"
 -- require "image-config"
 -- require "nvim-docker-config"
 
