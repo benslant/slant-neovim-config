@@ -58,6 +58,9 @@ brew install colima
 brew install docker
 brew install docker-buildx
 brew install wget
+brew install ripgrep
+brew install pyright
+brew install ruff-lsp
 ```
 
 ##### Node Installation
