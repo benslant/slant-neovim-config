@@ -161,8 +161,32 @@ echo 'Host github.com\nIdentity File ~/.ssh/{a-key-name-here}'
 ### Installing Node
 You need node for a bunch of things... so you'll want to install that. Best to do it with NVM
 
+Lazy modules are located in the following location
+
+```
+~/.local/share/nvim/lazy/
+```
+
+In the folder named `markdown` do the following:
+
+```
+let g:mkdp_browser = 'firefox'
+```
+
 ```
 brew install nvm
+```
+
+### NeoVim Setup
+
+You'll need to install a few things.
+1. YML Language Server
+```
+brew install yaml-language-server
+```
+
+```
+npm install -g neovim
 ```
 
 ### Installing Nerd Fonts
