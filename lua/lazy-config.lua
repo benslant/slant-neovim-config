@@ -63,37 +63,41 @@ require('lazy').setup({
 	{"3rd/diagram.nvim", dependencies = {"3rd/image.nvim"}},
 	{"stevanmilic/nvim-lspimport"},
 	{"leoluz/nvim-dap-go"},
-  {"sindrets/diffview.nvim"},
+  	{"sindrets/diffview.nvim"},
 	{"tpope/vim-dadbod"},
-  {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    lazy = false,
-    config = function()
-      require("refactoring").setup()
-    end,
-  },
+  	{
+	    "ThePrimeagen/refactoring.nvim",
+	    dependencies = {
+	      "nvim-lua/plenary.nvim",
+	      "nvim-treesitter/nvim-treesitter",
+	    },
+	    lazy = false,
+	    config = function()
+	      require("refactoring").setup()
+	    end,
+	},
 	{"kristijanhusak/vim-dadbod-ui"},
 	{"folke/trouble.nvim", cmd = "Trouble", opts={}},
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function(plugin) 
-			if vim.fn.executable "npx" then
-				vim.cmd("!cd".. plugin.dir .. " && cd app && npx --yes yarn install")
-			else
-				vim.cmd [[Lazy markdown-preview.nvim]]
-				vim.fn["mkdp#util#install"]()
-			end
-		end,
-		init = function()
-			if vim.fn.executable "npx" then vim.g.mkdp_filetype = { "markdown" } end
-		end
-  }
+	{
+	    "iamcco/markdown-preview.nvim",
+	    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+	    ft = { "markdown" },
+	    lazy = true,
+	    build = function(plugin) 
+				if vim.fn.executable "npx" then
+					vim.cmd("!cd".. plugin.dir .. " && cd app && npx --yes yarn install")
+				else
+				-- vim.cmd [[Lazy markdown-preview.nvim]]
+					vim.fn["mkdp#util#install"]()
+				end
+	    end,
+	    init = function()
+				if vim.fn.executable "npx" then
+					vim.g.mkdp_filetype = { "markdown" }
+				end
+				vim.g.mkdp_browser = 'firefox'
+	    end
+	}
 })
 
 

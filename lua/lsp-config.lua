@@ -65,6 +65,7 @@ require('lspconfig').pyright.setup({
 		}
 	}
 })
+-- require('lspconfig').kotlin_language_server({})
 
 local cmp = require('cmp')
 cmp.setup({

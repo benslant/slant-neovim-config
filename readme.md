@@ -159,20 +159,6 @@ echo 'Host github.com\nIdentity File ~/.ssh/{a-key-name-here}'
 ```
 
 ### Installing Node
-You need node for a bunch of things... so you'll want to install that. Best to do it with NVM
-
-Lazy modules are located in the following location
-
-```
-~/.local/share/nvim/lazy/
-```
-
-In the folder named `markdown` do the following:
-
-```
-let g:mkdp_browser = 'firefox'
-```
-
 ```
 brew install nvm
 ```
@@ -188,6 +174,53 @@ brew install yaml-language-server
 ```
 npm install -g neovim
 ```
+You need node for a bunch of things... so you'll want to install that. Best to do it with NVM
+
+Lazy modules are located in the following location
+
+```
+~/.local/share/nvim/lazy/
+```
+
+#### markdown-preview.nvim setup
+
+I've had a lot of trouble getting this to work from a clean install. Seems to be a combination of things that need to be tweaked to get it right. Basically there seems to be a bootstrapping problem building this plugin with node.
+
+This is the only combination of things that has worked reliably for me:
+
+1. In you make sure the lazt config for the module looks as so:
+```
+{
+	    "iamcco/markdown-preview.nvim",
+	    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+	    ft = { "markdown" },
+	    lazy = true,
+	    build = function(plugin) 
+            if vim.fn.executable "npx" then
+                vim.cmd("!cd".. plugin.dir .. " && cd app && npx --yes yarn install")
+            else
+                vim.fn["mkdp#util#install"]()
+            end
+	    end,
+	    init = function()
+            if vim.fn.executable "npx" then
+                vim.g.mkdp_filetype = { "markdown" }
+            end
+            vim.g.mkdp_browser = 'firefox'
+	    end
+}
+
+```
+
+This will get the initial install to work... the else in the build is kind of redundant.. but I haven't given up on fixing the bootstrapping problem.
+
+2. Once the plugin has been loaded you'll need to manually call the install command from within NeoVim once.
+```
+:call mkdp#util#install()
+```
+
+3. Profit
+
 
 ### Installing Nerd Fonts
 [NerdFonts](https://www.nerdfonts.com/)
