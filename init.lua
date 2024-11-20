@@ -17,7 +17,8 @@ require "markdown-preview-config"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
 
-vim.keymap.set('n', '<Leader>q', ":wqa!\n", {})
+vim.keymap.set('n', '<Leader>q', ":wa\n:qa\n", {})
+vim.keymap.set('i', '<Leader>q', ":wa\n:qa\n", {})
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
