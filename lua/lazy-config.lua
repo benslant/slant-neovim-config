@@ -58,6 +58,7 @@ require('lazy').setup({
 			"nvim-treesitter/nvim-treesitter"
 		}
 	},
+	{'nvim-java/nvim-java'},
 	{"nvim-neotest/neotest-python"},
 	{"dgrbrady/nvim-docker", dependencies = {'nvim-lua/plenary.nvim', 'MunifTanjim/nui.nvim'}},
 	{"3rd/diagram.nvim", dependencies = {"3rd/image.nvim"}},

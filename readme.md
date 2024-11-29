@@ -49,11 +49,15 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat)
 
 #### Dev Tool Installation
 ```
+brew install jq
+brew install jq
 brew install git
 brew install nvim
 brew install pyenv
 brew install nvm
 brew install jenv
+brew install maven
+brew install jdtls
 brew install colima
 brew install docker
 brew install docker-buildx
@@ -61,6 +65,7 @@ brew install wget
 brew install ripgrep
 brew install pyright
 brew install ruff-lsp
+brew install duckdb
 ```
 
 ##### Node Installation
@@ -91,10 +96,29 @@ Install a version
 pyenv install {selected-version}
 ```
 
+Setup the shell environment
+```
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+```
+
 Set the local version
 ```
 python local {selected-version}
 ```
+Installing Poetry to manage virtual environments...
+
+```
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+Once the binaries are installed you need to added the poetry binary to your path.. something like
+
+```
+export PATH="/Users/{username}/.local/bin:$PATH"`
+```
+
 
 ##### Go Setup
 Install gvm

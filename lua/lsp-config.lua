@@ -1,5 +1,5 @@
 vim.opt.signcolumn = 'yes'
-
+require('java').setup()
 local lspconfig_defaults = require('lspconfig').util.default_config
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
   'force',
@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local capabilities = vim.lsp.protocol.make_client_capabilities({
 })
+
 require('lspconfig').gopls.setup({
 	--on_attach = on_attach,
 	capabilities = capabilities,
@@ -50,6 +51,7 @@ require('lspconfig').gopls.setup({
     },
   },
 })
+require('lspconfig').jdtls.setup({})
 require('lspconfig').phpactor.setup({})
 require('lspconfig').pyright.setup({
 	settings = {
