@@ -28,6 +28,7 @@ end
 -- dau-ui configuration
 vim.keymap.set('n', 'dt', function() require('dapui').toggle() end)
 vim.keymap.set('n', 'do', function() require('dapui').open() end)
+vim.keymap.set('n', '<leader>e', function() vim.diagnostic.open_float() end)
 
 require("neodev").setup({
   library = { plugins = { "nvim-dap-ui" }, types = true },

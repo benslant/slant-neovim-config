@@ -69,7 +69,7 @@ nvim_tree.setup {
 }
 
 -- nvim-tree key mapping configuration
-vim.keymap.set('n', '<Leader>e', require('nvim-tree.api').tree.open, {})
-vim.keymap.set('n', '<Leader>c', require('nvim-tree.api').tree.close, {})
+vim.keymap.set('n', '<Leader>c', require('nvim-tree.api').tree.toggle, {})
+-- vim.keymap.set('n', '<Leader>c', require('nvim-tree.api').tree.toggle, {})
 -- vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 -- vim.keymap.set('n', '<Leader>fb', builtin.buffers, {})

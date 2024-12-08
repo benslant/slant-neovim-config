@@ -68,6 +68,14 @@ brew install ruff-lsp
 brew install duckdb
 ```
 
+##### MacOS
+
+Autohide the dock
+
+```
+defaults write com.apple.dock autohide-delay -float 1000; killall Dock
+```
+
 ##### Node Installation
 
 ```
@@ -166,6 +174,11 @@ Add the version to jenv
 jenv add /opt/homebrew/Cellar/openjdk@21/21.0.5/libexec/openjdk.jdk/Contents/Home
 ```
 
+#### Kotlin Setup
+
+```
+brew install gradle-completion
+```
 
 #### GitHub Setup
 ### Setting Up Keys For GitHub
