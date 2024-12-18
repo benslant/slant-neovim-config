@@ -11,6 +11,8 @@ require "diagram-config"
 require "split-navigation-config"
 require "trouble-config"
 require "markdown-preview-config"
+require "nvim-refactoring"
+
 -- require "image-config"
 -- require "nvim-docker-config"
 

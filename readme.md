@@ -127,6 +127,10 @@ Once the binaries are installed you need to added the poetry binary to your path
 export PATH="/Users/{username}/.local/bin:$PATH"`
 ```
 
+For refactoring to work you need to make sure that TreeSitter has python installed:
+```
+:TSInstall python
+```
 
 ##### Go Setup
 Install gvm
