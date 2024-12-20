@@ -66,6 +66,7 @@ brew install ripgrep
 brew install pyright
 brew install ruff-lsp
 brew install duckdb
+brew isntall telnet
 ```
 
 ##### MacOS
