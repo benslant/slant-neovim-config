@@ -28,7 +28,7 @@ require('lazy').setup({
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'folke/tokyonight.nvim'},
-	{"nvim-treesitter/nvim-treesitter", config = function() require("nvim-treesitter.configs").setup {
+	{"nvim-treesitter/nvim-treesitter", config = function() require("nvim-treesitter.config").setup {
 			highlight = {
 				enable = true,
 			},

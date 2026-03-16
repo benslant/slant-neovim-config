@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 local capabilities = vim.lsp.protocol.make_client_capabilities({
 })
 
-require('lspconfig').gopls.setup({
+vim.lsp.config('gopls', {
 	--on_attach = on_attach,
 	capabilities = capabilities,
 	--cmd = {"gopls"},
@@ -51,9 +51,9 @@ require('lspconfig').gopls.setup({
     },
   },
 })
-require('lspconfig').jdtls.setup({})
-require('lspconfig').phpactor.setup({})
-require('lspconfig').pyright.setup({
+vim.lsp.config('jdtls', {})
+vim.lsp.config('phpactor', {})
+vim.lsp.config('pyright', {
 	settings = {
 		python = {
 			analysis = {
@@ -100,15 +100,15 @@ cmp.setup({
 -- Configure `ruff-lsp`.
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 -- For the default config, along with instructions on how to customize the settings
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
       args = {},
     }
   }
-}
-require('lspconfig').yamlls.setup({
+})
+vim.lsp.config('yamlls', {
 settings = {
             yaml = {
                     format = {
