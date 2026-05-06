@@ -27,3 +27,7 @@ vim.opt.shiftwidth = 2
 vim.wo.relativenumber = true
 vim.opt.termguicolors = true
 vim.cmd.colorscheme('tokyonight')
+
+-- Buffer management keymaps
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>bD', ':bd!<CR>', { desc = 'Force close buffer (discard changes)' })

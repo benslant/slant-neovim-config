@@ -18,7 +18,7 @@ require('lazy').setup({
 	-- rocks.enabled = false,
 	{"williamboman/mason.nvim", opts = {
 		ensure_installed = {
-			"pyright",
+			"pyright", "pylsp",
 		}
 	}
 	},
@@ -37,7 +37,8 @@ require('lazy').setup({
 				"luadoc",
 				"vim",
 				"lua",
-				"markdown"
+				"markdown",
+				"kotlin"
 			}
 		}
 		end,
@@ -64,10 +65,12 @@ require('lazy').setup({
 	{"3rd/diagram.nvim", dependencies = {"3rd/image.nvim"}},
 	{"stevanmilic/nvim-lspimport"},
 	{"leoluz/nvim-dap-go"},
+	{"Mgenuit/nvim-dap-kotlin"},
   	{"sindrets/diffview.nvim"},
 	{"tpope/vim-dadbod"},
   	{
 	    "ThePrimeagen/refactoring.nvim",
+	    commit = "32e49b3", -- last commit supporting Neovim 0.11 (f06ac3d requires nvim 0.12+)
 	    dependencies = {
 	      "nvim-lua/plenary.nvim",
 	      "nvim-treesitter/nvim-treesitter",
@@ -80,13 +83,23 @@ require('lazy').setup({
 	{"kristijanhusak/vim-dadbod-ui"},
 	{"folke/trouble.nvim", cmd = "Trouble", opts={}},
 	{
+		"AlexandrosAlexiou/kotlin.nvim",
+		ft = { "kotlin" },
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+		config = function()
+			require("kotlin-config")
+		end,
+	},
+	{
 	    "iamcco/markdown-preview.nvim",
 	    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 	    ft = { "markdown" },
 	    lazy = true,
 	    build = function(plugin) 
 				if vim.fn.executable "npx" then
-					vim.cmd("!cd".. plugin.dir .. " && cd app && npx --yes yarn install")
+					vim.cmd("!cd " .. plugin.dir .. " && cd app && npx --yes yarn install")
 				else
 				-- vim.cmd [[Lazy markdown-preview.nvim]]
 					vim.fn["mkdp#util#install"]()
@@ -96,7 +109,7 @@ require('lazy').setup({
 				if vim.fn.executable "npx" then
 					vim.g.mkdp_filetype = { "markdown" }
 				end
-				vim.g.mkdp_browser = 'firefox'
+				vim.g.mkdp_browser = 'Google Chrome'
 	    end
 	},
 	{'kristijanhusak/vim-dadbod-ui',
