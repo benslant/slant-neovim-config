@@ -36,6 +36,75 @@ require("neodev").setup({
 })
 
 require("dap-python").setup("python")
+-- Kotlin DAP setup (nvim-dap-kotlin auto-configures the adapter)
+require("dap-kotlin").setup({
+	dap_command = "kotlin-debug-adapter",
+	project_root = "${workspaceFolder}",
+	enable_logging = false,
+	log_file_path = "",
+})
+
+-- Append coroutine-friendly configs to the ones dap-kotlin already set up
+-- (dap-kotlin.setup() already creates the adapter and base configurations)
+local kotlin_configs = dap.configurations.kotlin or {}
+
+-- Add coroutine debug launch config
+table.insert(kotlin_configs, {
+	type = "kotlin",
+	request = "launch",
+	name = "Launch with coroutine debug",
+	mainClass = function()
+		local root = vim.fs.find("src", { path = vim.uv.cwd(), upward = true, stop = vim.env.HOME })[1] or ""
+		local fname = vim.api.nvim_buf_get_name(0)
+		return fname:gsub(root, ""):gsub("main/kotlin/", ""):gsub(".kt", "Kt"):gsub("/", "."):sub(2, -1)
+	end,
+	projectRoot = "${workspaceFolder}",
+	jsonLogFile = "",
+	enableJsonLogging = false,
+	-- Enable coroutine debug mode + stacktrace recovery for better coroutine stack frames
+	-- Requires kotlinx-coroutines-debug on your project classpath.
+	args = {
+		"-Dkotlinx.coroutines.debug",
+		"-Dkotlinx.coroutines.stacktrace.recovery=true",
+		"-ea",
+	},
+})
+
+-- Add attach-to-remote config (e.g. after: ./gradlew --info cleanTest test --debug-jvm)
+table.insert(kotlin_configs, {
+	type = "kotlin",
+	request = "attach",
+	name = "Attach to running JVM (port 5005)",
+	projectRoot = vim.fn.getcwd(),
+	hostName = "localhost",
+	port = 5005,
+	timeout = 10000,
+})
+
+dap.configurations.kotlin = kotlin_configs
+
+-- Kotlin-specific DAP keymaps (only in .kt files)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "kotlin",
+	callback = function()
+		vim.keymap.set('n', '<leader>dc', function()
+			-- Dump coroutines to the REPL (requires kotlinx-coroutines-debug on classpath)
+			local session = require('dap').session()
+			if session then
+				session:evaluate("kotlinx.coroutines.debug.DebugProbes.dumpCoroutines()", function(err, resp)
+					if err then
+						vim.notify("Coroutine dump failed: " .. tostring(err), vim.log.levels.WARN)
+					else
+						vim.notify("Coroutine dump sent to REPL", vim.log.levels.INFO)
+					end
+				end)
+			else
+				vim.notify("No active debug session", vim.log.levels.WARN)
+			end
+		end, { buffer = true, desc = "Dump coroutines (DAP)" })
+	end,
+})
+
 require("dap-go").setup({
 	dap_configurations = {
     {
