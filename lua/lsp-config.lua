@@ -42,7 +42,7 @@ vim.lsp.config('gopls', {
 	--on_attach = on_attach,
 	capabilities = capabilities,
 	--cmd = {"gopls"},
-
+})
 -- gopls (Go)
 vim.lsp.config('gopls', {
   filetypes = { "go", "gomod", "gowork", "gotmpl" },

@@ -12,6 +12,7 @@ require "split-navigation-config"
 require "trouble-config"
 require "markdown-preview-config"
 require "nvim-refactoring"
+require "pdf-config"
 
 -- require "image-config"
 -- require "nvim-docker-config"
