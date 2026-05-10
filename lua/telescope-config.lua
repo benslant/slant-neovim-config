@@ -47,3 +47,20 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })		
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+
+-- LSP integration: set keymaps buffer-locally when an LSP client attaches
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'Telescope LSP keymaps',
+  callback = function(event)
+    local opts = { buffer = event.buf }
+    vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions,               vim.tbl_extend('force', opts, { desc = 'LSP: Go to definition' }))
+    vim.keymap.set('n', '<leader>gr', builtin.lsp_references,                vim.tbl_extend('force', opts, { desc = 'LSP: Find references' }))
+    vim.keymap.set('n', '<leader>gi', builtin.lsp_implementations,           vim.tbl_extend('force', opts, { desc = 'LSP: Go to implementation' }))
+    vim.keymap.set('n', '<leader>gt', builtin.lsp_type_definitions,          vim.tbl_extend('force', opts, { desc = 'LSP: Go to type definition' }))
+    vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols,          vim.tbl_extend('force', opts, { desc = 'LSP: Document symbols' }))
+    vim.keymap.set('n', '<leader>ws', builtin.lsp_dynamic_workspace_symbols, vim.tbl_extend('force', opts, { desc = 'LSP: Workspace symbols' }))
+    vim.keymap.set('n', '<leader>fd', builtin.diagnostics,                   vim.tbl_extend('force', opts, { desc = 'LSP: Diagnostics (workspace)' }))
+    vim.keymap.set('n', '<leader>fi', builtin.lsp_incoming_calls,            vim.tbl_extend('force', opts, { desc = 'LSP: Incoming calls' }))
+    vim.keymap.set('n', '<leader>fo', builtin.lsp_outgoing_calls,            vim.tbl_extend('force', opts, { desc = 'LSP: Outgoing calls' }))
+  end,
+})
