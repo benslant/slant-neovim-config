@@ -12,6 +12,15 @@ end
 -- local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
+  -- Automatically reload the tree when files/directories change on disk
+  filesystem_watchers = {
+    enable = true,
+    debounce_delay = 50,
+    ignore_dirs = {
+      "node_modules",
+      ".git",
+    },
+  },
   update_focused_file = {
     enable = true,
     update_cwd = true,

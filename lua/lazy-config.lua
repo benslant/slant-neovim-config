@@ -18,7 +18,7 @@ require('lazy').setup({
 	-- rocks.enabled = false,
 	{"williamboman/mason.nvim", opts = {
 		ensure_installed = {
-			"pyright", "pylsp",
+			"pyright", "pylsp", "typescript-language-server",
 		}
 	}
 	},
@@ -67,6 +67,7 @@ require('lazy').setup({
 	{"leoluz/nvim-dap-go"},
 	{"Mgenuit/nvim-dap-kotlin"},
   	{"sindrets/diffview.nvim"},
+	{"tpope/vim-fugitive"},
 	{"tpope/vim-dadbod"},
   	{
 	    "ThePrimeagen/refactoring.nvim",

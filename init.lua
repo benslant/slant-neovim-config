@@ -31,3 +31,10 @@ vim.cmd.colorscheme('tokyonight')
 -- Buffer management keymaps
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>bD', ':bd!<CR>', { desc = 'Force close buffer (discard changes)' })
+
+-- Copy absolute file path to clipboard
+vim.keymap.set('n', '<leader>cr', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path, vim.log.levels.INFO)
+end, { desc = 'Copy absolute file path to clipboard' })
