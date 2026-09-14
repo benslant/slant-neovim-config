@@ -33,6 +33,21 @@ require("kotlin").setup({
   },
 })
 
+-- kotlin.nvim registers and enables kotlin_ls from its own `FileType kotlin`
+-- autocmd. When the first Kotlin buffer is opened at startup (`nvim Foo.kt`),
+-- vim.v.vim_did_enter is still 0, so vim.lsp.enable() skips the doautoall that
+-- attaches already-open buffers and nothing ever attaches to that buffer -
+-- definition/references report no servers registered. Re-run the enable once
+-- startup has finished so the initial buffer gets a client.
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    if vim.lsp.is_enabled("kotlin_ls") then
+      vim.lsp.enable("kotlin_ls")
+    end
+  end,
+})
+
 -- Kotlin-specific keymaps (active only in .kt files)
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "kotlin",
