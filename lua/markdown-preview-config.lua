@@ -10,6 +10,8 @@ vim.g.mkdp_auto_close = 1
 -- Refresh preview only on save or leaving insert mode (0 = refresh on every change)
 vim.g.mkdp_refresh_slow = 0
 
+vim.g.mkdp_port = "8890"
+
 -- Use firefox as the browser (change to 'google-chrome', 'chromium', etc. if preferred)
 vim.g.mkdp_browser = 'Google Chrome'
 

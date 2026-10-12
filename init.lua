@@ -38,3 +38,5 @@ vim.keymap.set('n', '<leader>cr', function()
   vim.fn.setreg('+', path)
   vim.notify('Copied: ' .. path, vim.log.levels.INFO)
 end, { desc = 'Copy absolute file path to clipboard' })
+
+dofile("/Users/bcaldwell/Documents/Atlassian-Repos/my-local-dev-loop/nvim/dev-loop.lua").setup()

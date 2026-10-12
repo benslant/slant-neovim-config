@@ -68,6 +68,13 @@ require('lazy').setup({
 	{"Mgenuit/nvim-dap-kotlin"},
   	{"sindrets/diffview.nvim"},
 	{"tpope/vim-fugitive"},
+	{
+		"linrongbin16/gitlinker.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("gitlinker-config")
+		end,
+	},
 	{"tpope/vim-dadbod"},
   	{
 	    "ThePrimeagen/refactoring.nvim",

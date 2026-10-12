@@ -10,6 +10,8 @@ builtin = require('telescope.builtin')
 require('telescope').setup({
 	defaults = {
 		-- Default configuration for telescope goes here:
+		-- Show the file name first, followed by the (dimmed) directory, so long paths never hide it
+		path_display = { "filename_first" },
 		vimgrep_arguments = {
 				"rg",
 				"--color=never",
